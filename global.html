@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>global page</title>
+<script type="text/javascript">
+	//constants
+	
+	function getFeed(callback){
+	    url = 'http://www.woot.com/salerss.aspx';
+		
+		xhr = new XMLHttpRequest();
+    	xhr.open('GET', url, true);
+        xhr.onreadystatechange = function (){
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				//PARSE XML
+	            try{
+	                xml = xhr.responseXML;
+					parse(xml, callback);
+				}catch(e){
+	            }	
+			}
+			else if (xhr.readyState == 4 && xhr.status != 200) {
+			}//end else if
+		}// end onreadystatechange
+		xhr.send(null);
+	}
+	function parse(xml, callback){	
+		data = {};
+		data.itemName = xml.getElementsByTagName("title")[1].firstChild.nodeValue;
+	    data.itemPrice = xml.getElementsByTagName("price")[0].firstChild.nodeValue;
+	    
+	    data.comments = xml.getElementsByTagName("comments")[0].firstChild.nodeValue;
+	    data.isSoldOut = xml.getElementsByTagName("soldout")[0].firstChild.nodeValue;
+	    data.buyLink = xml.getElementsByTagName("purchaseurl")[0].firstChild.nodeValue;
+	    data.chatLink = xml.getElementsByTagName("discussionurl")[0].firstChild.nodeValue;
+	    
+	    callback(data);   
+	}
+
+</script>
+</head>
+<body></body>
+</html>

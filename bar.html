@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WootChecker</title>
+<link rel="stylesheet" href="styles/main.css" type="text/css"/>
+<script type="text/javascript">
+	const myGlobal = safari.extension.globalPage.contentWindow;
+	const settings = safari.extension.settings;
+	var updateInterval = (settings.interval != null && settings.interval >= 1) ? parseInt(settings.interval,10) : 30;
+	
+	var mData = null;
+	var timer = null;
+	
+	function onLoad(){
+		settings.addEventListener("change", intervalChanged, false);
+		myGlobal.getFeed(updateContent);
+		setUpdateInterval();
+
+	}
+	function updateContent(data){
+		//alert("data: " + data.itemPrice + " // " + data.itemName);
+		mData = data;
+		(data.isSoldOut == "True") ? document.getElementById("soldOut").innerHTML = "Sold Out!" : document.getElementById("soldOut").innerHTML = "";
+		document.getElementById("price").innerHTML = data.itemPrice;
+		document.getElementById("name").innerHTML = data.itemName;
+		document.getElementById("chatB").value = "Discussion(" + data.comments + ")"; 
+	}
+	
+	function linkBuy(){
+		var newTab = safari.self.browserWindow.openTab();
+		newTab.url = mData.buyLink;
+	}
+	function linkChat(){
+		var newTab = safari.self.browserWindow.openTab();
+		newTab.url = mData.chatLink;	
+	}
+	function openWoot(){
+		var newTab = safari.self.browserWindow.openTab();
+		newTab.url = "http://www.woot.com";	
+	}
+	
+	function setUpdateInterval(){
+		timer = setInterval(function(){
+			myGlobal.getFeed(updateContent);
+		}, updateInterval * 60 * 1000);
+	}
+	
+	function intervalChanged(event){
+		if (event.key == "interval"){
+		    updateInterval=event.newValue;
+		    clearInterval(timer);
+		    setUpdateInterval();
+		    
+	    }
+	}
+</script>
+</head>
+<body onload="onLoad();">
+<div id="content">
+	<div id="icon"><img src="/img/favicon.ico" onclick="openWoot();"/></div>
+	<div id="soldOut" class="lItem" onclick="openWoot();"></div>
+	<div id="price" class="lItem" onclick="openWoot();">Loading...</div>
+	<div id="name" class="lItem" onclick="openWoot();"></div>
+	
+	<div id="chat" class="rItem"><input id="chatB" type=button value="Discussion" onclick="linkChat();"></div>
+	<div id="buy" class="rItem"><input id="buyB" type=button value="I want one!" onclick="linkBuy();"></div>
+
+</div>
+</body>
+</html>
