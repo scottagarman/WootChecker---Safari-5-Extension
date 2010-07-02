@@ -28,6 +28,8 @@
 		data = {};
 		data.itemName = xml.getElementsByTagName("title")[1].firstChild.nodeValue;
 	    data.itemPrice = xml.getElementsByTagName("price")[0].firstChild.nodeValue;
+	    data.desc = xml.getElementsByTagName("description")[1].firstChild.nodeValue;
+	    data.teaser = xml.getElementsByTagName("teaser")[0].firstChild.nodeValue;
 	    
 	    data.comments = xml.getElementsByTagName("comments")[0].firstChild.nodeValue;
 	    data.isSoldOut = xml.getElementsByTagName("soldout")[0].firstChild.nodeValue;

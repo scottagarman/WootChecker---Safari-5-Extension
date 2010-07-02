@@ -23,7 +23,8 @@
 		(data.isSoldOut == "True") ? document.getElementById("soldOut").innerHTML = "Sold Out!" : document.getElementById("soldOut").innerHTML = "";
 		document.getElementById("price").innerHTML = data.itemPrice;
 		document.getElementById("name").innerHTML = data.itemName;
-		document.getElementById("chatB").value = "Discussion(" + data.comments + ")"; 
+		document.getElementById("chatB").value = "Discussion(" + data.comments + ")";
+		document.getElementById("name").title = data.teaser; 
 	}
 	
 	function linkBuy(){
