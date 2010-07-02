@@ -24,7 +24,8 @@
 #icon{
 	position: relative;
 	float: left;
-	padding:7px
+	padding:7px;
+	cursor:pointer;
 }
 #soldOut{
 	font-size: 12px;

@@ -20,6 +20,11 @@
 	function updateContent(data){
 		//alert("data: " + data.itemPrice + " // " + data.itemName);
 		mData = data;
+		
+		if(data.isWootOff == "True"){
+			//do woot off stuff???
+		}
+		
 		(data.isSoldOut == "True") ? document.getElementById("soldOut").innerHTML = "Sold Out!" : document.getElementById("soldOut").innerHTML = "";
 		document.getElementById("price").innerHTML = data.itemPrice;
 		document.getElementById("name").innerHTML = data.itemName;
