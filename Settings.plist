@@ -14,9 +14,25 @@
 		<key>StepValue</key>
 		<real>15</real>
 		<key>Title</key>
-		<string>Update Interval (minutes)</string>
+		<string>Update Interval</string>
+		<key>Titles</key>
+		<array>
+			<string>5 Minutes</string>
+			<string>15 Minutes</string>
+			<string>30 Minutes</string>
+			<string>1 Hour</string>
+			<string>6 Hours</string>
+		</array>
 		<key>Type</key>
-		<string>TextField</string>
+		<string>PopUpButton</string>
+		<key>Values</key>
+		<array>
+			<real>5</real>
+			<real>15</real>
+			<real>30</real>
+			<real>60</real>
+			<real>360</real>
+		</array>
 	</dict>
 </array>
 </plist>
