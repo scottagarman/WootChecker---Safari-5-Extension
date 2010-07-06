@@ -26,10 +26,11 @@
 		}
 		
 		(data.isSoldOut == "True") ? document.getElementById("soldOut").innerHTML = "Sold Out!" : document.getElementById("soldOut").innerHTML = "";
-		document.getElementById("price").innerHTML = data.itemPrice;
-		document.getElementById("name").innerHTML = data.itemName;
+		document.getElementById("price").innerHTML = '<a href="#">'+data.itemPrice+'</a>';
+		document.getElementById("name").innerHTML = '<a href="#">'+data.itemName+'</a>';
 		document.getElementById("chatB").value = "Discussion(" + data.comments + ")";
 		document.getElementById("name").title = data.teaser; 
+		
 	}
 	
 	function linkBuy(){
@@ -68,9 +69,8 @@
 	<div id="price" class="lItem" onclick="openWoot();">Loading...</div>
 	<div id="name" class="lItem" onclick="openWoot();"></div>
 	
-	<div id="chat" class="rItem"><input id="chatB" type=button value="Discussion" onclick="linkChat();"></div>
-	<div id="buy" class="rItem"><input id="buyB" type=button value="I want one!" onclick="linkBuy();"></div>
-
+	<div id="chat" class="rItem"><input id="chatB" type="button" value="Discussion" onclick="linkChat();"></div>
+	<div id="buy" class="rItem"><input id="buyB" type="button" value="I want one!" onclick="linkBuy();"></div>
 </div>
 </body>
 </html>
