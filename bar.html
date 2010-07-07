@@ -26,8 +26,8 @@
 		}
 		
 		(data.isSoldOut == "True") ? document.getElementById("soldOut").innerHTML = "Sold Out!" : document.getElementById("soldOut").innerHTML = "";
-		document.getElementById("price").innerHTML = '<a href="#">'+data.itemPrice+'</a>';
-		document.getElementById("name").innerHTML = '<a href="#">'+data.itemName+'</a>';
+		document.getElementById("price").innerHTML = '<a href="javascript:void(0)">'+data.itemPrice+'</a>';
+		document.getElementById("name").innerHTML = '<a href="javascript:void(0)">'+data.itemName+'</a>';
 		document.getElementById("chatB").value = "Discussion(" + data.comments + ")";
 		document.getElementById("name").title = data.teaser; 
 		
