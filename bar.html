@@ -5,10 +5,21 @@
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <script type="text/javascript">
 	const myGlobal = safari.extension.globalPage.contentWindow;
-	var mData = null;
+	var mData = undefined;
+	var mAudio = undefined;
+	var audioAlert = undefined;
 	
 	function onLoad(){
 		myGlobal.getFeed();
+		
+		//mAudio = document.getElementById("audioObj");
+		//mAudio.src = safari.extension.baseURI + "alert.wav";
+		//mAudio.src = "http://clmov.de/tool/cs/login.wav";
+		//audioAlert = new Audio("http://clmov.de/tool/cs/login.wav");
+		//audioAlert = new Audio(safari.extension.baseURI + "login.wav");
+		//alert("audio loc: " + safari.extension.baseURI + "login.wav")
+		
+		//document.getElementById("tempAudio").play();
 	}
 	function updateContent(data){
 		//alert("data: " + data.itemPrice + " // " + data.itemName);
@@ -22,8 +33,10 @@
 		document.getElementById("price").innerHTML = '<a href="javascript:void(0)">'+mData.itemPrice+'</a>';
 		document.getElementById("name").innerHTML = '<a href="javascript:void(0)">'+mData.itemName+'</a>';
 		document.getElementById("chatB").value = "Discussion(" + mData.comments + ")";
-		document.getElementById("name").title = mData.teaser; 
+		document.getElementById("name").title = mData.teaser;
 		
+		//Play audio tone
+		//audioAlert.play();
 	}
 	
 	function linkBuy(){
