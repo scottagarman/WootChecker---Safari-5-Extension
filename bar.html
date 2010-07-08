@@ -14,7 +14,7 @@
 		//alert("data: " + data.itemPrice + " // " + data.itemName);
 		mData = data;
 		
-		if(data.isWootOff == "True"){
+		if(mData.isWootOff == "True"){
 			//do woot off stuff???
 		}
 		
@@ -28,11 +28,11 @@
 	
 	function linkBuy(){
 		var newTab = safari.self.browserWindow.openTab();
-		newTab.url = mmData.buyLink;
+		newTab.url = mData.buyLink;
 	}
 	function linkChat(){
 		var newTab = safari.self.browserWindow.openTab();
-		newTab.url = mmData.chatLink;	
+		newTab.url = mData.chatLink;	
 	}
 	function openWoot(){
 		var newTab = safari.self.browserWindow.openTab();
@@ -43,7 +43,7 @@
 <body onload="onLoad();">
 <div id="content">
 	<!-- Left Text -->	
-	<div id="icon"><img src="/img/favicon.ico" onclick="openWoot();"/></div>
+	<div id="icon" class="lItem"><img src="/img/favicon.ico" onclick="openWoot();"/></div>
 	<div id="soldOut" class="lItem" onclick="openWoot();">Sold Out!</div>
 	<div id="price" class="lItem" onclick="openWoot();">Loading...</div>
 	<div id="name" class="lItem" onclick="openWoot();"></div>

@@ -7,32 +7,10 @@
 		<real>30</real>
 		<key>Key</key>
 		<string>interval</string>
-		<key>MaximumValue</key>
-		<real>60</real>
-		<key>MinimumValue</key>
-		<real>15</real>
-		<key>StepValue</key>
-		<real>15</real>
 		<key>Title</key>
-		<string>Update Interval</string>
-		<key>Titles</key>
-		<array>
-			<string>5 Minutes</string>
-			<string>15 Minutes</string>
-			<string>30 Minutes</string>
-			<string>1 Hour</string>
-			<string>6 Hours</string>
-		</array>
+		<string>Update Interval(Minutes)</string>
 		<key>Type</key>
-		<string>PopUpButton</string>
-		<key>Values</key>
-		<array>
-			<real>5</real>
-			<real>15</real>
-			<real>30</real>
-			<real>60</real>
-			<real>360</real>
-		</array>
+		<string>TextField</string>
 	</dict>
 </array>
 </plist>

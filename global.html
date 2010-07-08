@@ -7,13 +7,16 @@
 	const TIME_5 = 5 * 60 * 1000;
 	const TIME_1 = 1 * 60 * 1000; 
 	const settings = safari.extension.settings;
-	var updateInterval = (settings.interval != null && settings.interval >= 1) ? parseInt(settings.interval,10) : 30;
+	var updateInterval = (settings.interval != undefined && settings.interval >= 1) ? parseInt(settings.interval,10) : 30;
+	alert("update Interval:  " + updateInterval);  
+	var timer = undefined;
 	
 	function onLoad(){
 		settings.addEventListener("change", intervalChanged, false);
 	}
 	
 	function getFeed(){
+	    alert("getting feed");
 	    url = 'http://www.woot.com/salerss.aspx';
 		xhr = new XMLHttpRequest();
     	xhr.open('GET', url, true);
@@ -61,14 +64,17 @@
 	}
 	
 	function startTimer(isWootOff){
-		try{clearTimeout(timer);}catch(e){}
+		if(timer != undefined){
+			clearTimeout(timer);
+		}
 		
 		if(isWootOff == "True"){
 			//short timer
 			timer = setTimeout(getFeed, TIME_1);
 		}else{
 			//normal timer
-			timer = setTimeout(getFeed, updateInterval);
+			alert(updateInterval);
+			timer = setTimeout(getFeed, updateInterval * 60 * 1000);
 		}
 	}
 	
