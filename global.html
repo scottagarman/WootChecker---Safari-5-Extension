@@ -8,7 +8,6 @@
 	const TIME_1 = 1 * 60 * 1000; 
 	const settings = safari.extension.settings;
 	var updateInterval = (settings.interval != undefined && settings.interval >= 1) ? parseInt(settings.interval,10) : 30;
-	alert("update Interval:  " + updateInterval);  
 	var timer = undefined;
 	
 	function onLoad(){
@@ -16,7 +15,6 @@
 	}
 	
 	function getFeed(){
-	    alert("getting feed");
 	    url = 'http://www.woot.com/salerss.aspx';
 		xhr = new XMLHttpRequest();
     	xhr.open('GET', url, true);
@@ -73,7 +71,6 @@
 			timer = setTimeout(getFeed, TIME_1);
 		}else{
 			//normal timer
-			alert(updateInterval);
 			timer = setTimeout(getFeed, updateInterval * 60 * 1000);
 		}
 	}
