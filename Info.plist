@@ -51,6 +51,8 @@
 			<string>Some</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://www.scottagarman.com/wootchecker/update.plist</string>
 	<key>Website</key>
 	<string>http://www.scottagarman.com/wootchecker/</string>
 </dict>
