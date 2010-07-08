@@ -4,10 +4,17 @@
 <title>global page</title>
 <script type="text/javascript">
 	//constants
+	const TIME_5 = 5 * 60 * 1000;
+	const TIME_1 = 1 * 60 * 1000; 
+	const settings = safari.extension.settings;
+	var updateInterval = (settings.interval != null && settings.interval >= 1) ? parseInt(settings.interval,10) : 30;
 	
-	function getFeed(callback){
+	function onLoad(){
+		settings.addEventListener("change", intervalChanged, false);
+	}
+	
+	function getFeed(){
 	    url = 'http://www.woot.com/salerss.aspx';
-		
 		xhr = new XMLHttpRequest();
     	xhr.open('GET', url, true);
         xhr.onreadystatechange = function (){
@@ -15,7 +22,7 @@
 				//PARSE XML
 	            try{
 	                xml = xhr.responseXML;
-					parse(xml, callback);
+					parse(xml);
 				}catch(e){
 	            }	
 			}
@@ -24,7 +31,7 @@
 		}// end onreadystatechange
 		xhr.send(null);
 	}
-	function parse(xml, callback){	
+	function parse(xml){	
 		data = {};
 		data.itemName = xml.getElementsByTagName("title")[1].firstChild.nodeValue;
 	    data.itemPrice = xml.getElementsByTagName("price")[0].firstChild.nodeValue;
@@ -37,10 +44,40 @@
 	    data.chatLink = xml.getElementsByTagName("discussionurl")[0].firstChild.nodeValue;
 	    data.isWootOff = xml.getElementsByTagName("wootoff")[0].firstChild.nodeValue;
 	    
-	    callback(data);   
+	    _updateBars(data);
+	    
+	    startTimer(data.isWootOff);  
 	}
-
+	
+	function _updateBars(data){
+	    var bars = safari.extension.bars;
+	    for (var i = 0; i < bars.length; ++i) {
+	        if (bars[i].identifier !== "woot_bar")
+	            continue;
+	        var barWindow = bars[i].contentWindow;
+	        if (typeof barWindow.updateContent === "function")
+	            barWindow.updateContent(data);
+	    }
+	}
+	
+	function startTimer(isWootOff){
+		try{clearTimeout(timer);}catch(e){}
+		
+		if(isWootOff == "True"){
+			//short timer
+			timer = setTimeout(getFeed, TIME_1);
+		}else{
+			//normal timer
+			timer = setTimeout(getFeed, updateInterval);
+		}
+	}
+	
+	function intervalChanged(event){
+		if (event.key == "interval"){
+		    updateInterval = parseInt(event.newValue,10);
+	    }
+	}
 </script>
 </head>
-<body></body>
+<body onload="onLoad();"></body>
 </html>
