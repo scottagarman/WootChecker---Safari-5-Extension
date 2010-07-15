@@ -10,6 +10,9 @@
 	var audioAlert = undefined;
 	
 	function onLoad(){
+		
+		if(typeof myGlobal.getFeed != "function")
+			return false;
 		myGlobal.getFeed();
 		
 		//mAudio = document.getElementById("audioObj");
