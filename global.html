@@ -17,28 +17,34 @@
 	//instance
 	var updateInterval = (settings.interval != undefined && settings.interval >= 1) ? parseInt(settings.interval,10) : 30;
 	var timer = undefined;
+	var currentWoot = 0;
 	
 	function onLoad(){
 		settings.addEventListener("change", intervalChanged, false);
-		getFeed(0);
+		getFeed(currentWoot);
 	}
 	
 	function getFeed(type){
 	    switch(type){
 	    	case WOOT:
 	    		url = 'http://www.woot.com/salerss.aspx';
+	    		currentWoot = WOOT;
 	    		break;
     		case SHIRT:
     			url = 'http://shirt.woot.com/salerss.aspx';
+    			currentWoot = SHIRT;
 	    		break;
 	    	case KIDS:
 	    		url = 'http://kids.woot.com/salerss.aspx';
+	    		currentWoot = KIDS;
 	    		break;
 	    	case WINE:
 	    		url = 'http://wine.woot.com/salerss.aspx';
+	    		currentWoot = WINE;
 	    		break;
 	    	default:
 	    		url = 'http://www.woot.com/salerss.aspx';
+	    		currentWoot = WOOT;
 	    		break;		
 	    }
 		xhr = new XMLHttpRequest();
@@ -93,10 +99,10 @@
 		
 		if(isWootOff == "True"){
 			//short timer
-			timer = setTimeout(getFeed, TIME_1);
+			timer = setTimeout(function(){getFeed(currentWoot);}, TIME_1);
 		}else{
 			//normal timer
-			timer = setTimeout(getFeed, updateInterval * 60 * 1000);
+			timer = setTimeout(function(){getFeed(currentWoot);}, updateInterval * 60 * 1000);
 		}
 	}
 	
