@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <script type="text/javascript">
 	const myGlobal = safari.extension.globalPage.contentWindow;
+	const STORAGE_KEY = "_wootToolBar";
 	var mData = undefined;
 	var mAudio = undefined;
 	var audioAlert = undefined;
@@ -13,8 +14,7 @@
 		
 		if(typeof myGlobal.getFeed != "function")
 			return false;
-		myGlobal.getFeed(0);
-		
+		myGlobal.getFeed(localStorage.getItem(STORAGE_KEY));
 		//mAudio = document.getElementById("audioObj");
 		//mAudio.src = safari.extension.baseURI + "alert.wav";
 		//mAudio.src = "http://clmov.de/tool/cs/login.wav";
@@ -40,6 +40,10 @@
 		
 		//Play audio tone
 		//audioAlert.play();
+		
+		//set correct index (maybe move???)
+		var dd = document.getElementById("dropdown");
+		(localStorage.getItem(STORAGE_KEY) == null) ? dd.selectedIndex = 0 : dd.selectedIndex = parseInt(localStorage.getItem(STORAGE_KEY),10);
 	}
 	
 	function linkBuy(){
