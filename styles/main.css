@@ -28,14 +28,14 @@
 #dropdown{
     -webkit-appearance: none;
     outline: none;
-    width:80px;
+    width:90px;
     border-radius: 8px;
     border: none;
     background: none;
     background-image: url('../img/triangle.png');
     background-repeat: no-repeat;
     background-position: 5px right;
-    padding: 0px 10px 0px 5px;
+    padding: 1px 10px 1px 10px;
     cursor: pointer;
 }
 #dropdown:hover, #dropdown:active{
