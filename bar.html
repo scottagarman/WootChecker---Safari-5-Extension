@@ -13,7 +13,7 @@
 		
 		if(typeof myGlobal.getFeed != "function")
 			return false;
-		myGlobal.getFeed();
+		myGlobal.getFeed(0);
 		
 		//mAudio = document.getElementById("audioObj");
 		//mAudio.src = safari.extension.baseURI + "alert.wav";
@@ -54,12 +54,23 @@
 		var newTab = safari.self.browserWindow.openTab();
 		newTab.url = "http://www.woot.com";	
 	}
+	function updateWootSelection(id){
+		myGlobal.getFeed(parseInt(id, 10));
+	}
 </script>
 </head>
 <body onload="onLoad();">
 <div id="content">
 	<!-- Left Text -->	
 	<div id="icon" class="lItem"><img src="/img/favicon.ico" onclick="openWoot();"/></div>
+	<div id="selector" class="lItem">
+		<select id="wootSelect" onchange="updateWootSelection(this.options[this.selectedIndex].value);">
+			<option value="0">Woot!</option>
+			<option value="1">Shirt.Woot!</option>
+			<option value="2">Kids.Woot!</option>
+			<option value="3">Wine.Woot!</option>
+		</select>
+	</div>
 	<div id="soldOut" class="lItem" onclick="openWoot();">Sold Out!</div>
 	<div id="price" class="lItem" onclick="openWoot();">Loading...</div>
 	<div id="name" class="lItem" onclick="openWoot();"></div>

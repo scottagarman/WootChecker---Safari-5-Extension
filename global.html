@@ -6,17 +6,41 @@
 	//constants
 	const TIME_5 = 5 * 60 * 1000;
 	const TIME_1 = 1 * 60 * 1000; 
+	
 	const settings = safari.extension.settings;
+	
+	const WOOT  = 0;
+	const SHIRT = 1;
+	const KIDS  = 2;
+	const WINE  = 3;
+	
+	//instance
 	var updateInterval = (settings.interval != undefined && settings.interval >= 1) ? parseInt(settings.interval,10) : 30;
 	var timer = undefined;
 	
 	function onLoad(){
 		settings.addEventListener("change", intervalChanged, false);
-		getFeed();
+		getFeed(0);
 	}
 	
-	function getFeed(){
-	    url = 'http://www.woot.com/salerss.aspx';
+	function getFeed(type){
+	    switch(type){
+	    	case WOOT:
+	    		url = 'http://www.woot.com/salerss.aspx';
+	    		break;
+    		case SHIRT:
+    			url = 'http://shirt.woot.com/salerss.aspx';
+	    		break;
+	    	case KIDS:
+	    		url = 'http://kids.woot.com/salerss.aspx';
+	    		break;
+	    	case WINE:
+	    		url = 'http://wine.woot.com/salerss.aspx';
+	    		break;
+	    	default:
+	    		url = 'http://www.woot.com/salerss.aspx';
+	    		break;		
+	    }
 		xhr = new XMLHttpRequest();
     	xhr.open('GET', url, true);
         xhr.onreadystatechange = function (){
