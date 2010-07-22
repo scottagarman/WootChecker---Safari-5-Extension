@@ -25,7 +25,25 @@
 	display:none;
 }
 
-
+#dropdown{
+    -webkit-appearance: none;
+    outline: none;
+    width:80px;
+    border-radius: 8px;
+    border: none;
+    background: none;
+    background-image: url('../img/triangle.png');
+    background-repeat: no-repeat;
+    background-position: 5px right;
+    padding: 0px 10px 0px 5px;
+    cursor: pointer;
+}
+#dropdown:hover, #dropdown:active{
+    color: #fff;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.21) url('../img/triangle-white.png') no-repeat;
+    background-position: 5px right;
+}
 a {
 	color: #282828;
 	font-weight: bold;
