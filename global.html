@@ -23,6 +23,7 @@
 	
 	function onLoad(){
 		settings.addEventListener("change", intervalChanged, false);
+		//safari.application.addEventListener("validate", function (ev) { console.log(ev); alert("Pokeman!"); },false);
 		(localStorage.getItem(STORAGE_KEY) == null) ? currentWoot = WOOT : currentWoot = localStorage.getItem(STORAGE_KEY);
 		getFeed(currentWoot);
 	}
