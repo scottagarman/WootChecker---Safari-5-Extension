@@ -56,7 +56,7 @@
 	}
 	function openWoot(){
 		var newTab = safari.self.browserWindow.openTab();
-		newTab.url = "http://www.woot.com";	
+		newTab.url = mData.homeLink;	
 	}
 	function updateWootSelection(id){
 		myGlobal.getFeed(parseInt(id, 10));
