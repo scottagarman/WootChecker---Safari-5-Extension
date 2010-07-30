@@ -15,6 +15,7 @@
 		if(typeof myGlobal.getFeed != "function")
 			return false;
 		myGlobal.getFeed(localStorage.getItem(STORAGE_KEY));
+		showLoader(true);
 		//mAudio = document.getElementById("audioObj");
 		//mAudio.src = safari.extension.baseURI + "alert.wav";
 		//mAudio.src = "http://clmov.de/tool/cs/login.wav";
@@ -27,6 +28,7 @@
 	function updateContent(data){
 		//alert("data: " + data.itemPrice + " // " + data.itemName);
 		mData = data;
+		showLoader(false);
 		if(mData.isWootOff == "True"){
 			//do woot off stuff???
 		}
@@ -57,14 +59,22 @@
 		newTab.url = mData.homeLink;	
 	}
 	function updateWootSelection(id){
+		showLoader(true);
 		myGlobal.getFeed(parseInt(id, 10));
+	}
+	function showLoader(show){
+		if(show){
+			document.getElementById('loadIcon').src = "img/ajax-loader.gif";
+		}else{
+			document.getElementById('loadIcon').src = "img/favicon.png";
+		}
 	}
 </script>
 </head>
 <body onload="onLoad();">
 <div id="content">
 	<!-- Left Text -->	
-	<div id="icon" class="lItem"><img src="img/favicon.png" onclick="openWoot();"/></div>
+	<div id="icon" class="lItem"><img id="loadIcon" src="img/ajax-loader.gif" onclick="openWoot();"/></div>
 	<div id="selector" class="lItem">
 		<select id="dropdown" onchange="updateWootSelection(this.options[this.selectedIndex].value);">
 			<option value="0">Woot.Woot!</option>
