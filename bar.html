@@ -33,7 +33,7 @@
 		(mData.isSoldOut == "True") ? document.getElementById("soldOut").style.display = "block" : document.getElementById("soldOut").style.display = "none";
 		document.getElementById("price").innerHTML = '<a href="javascript:void(0)">'+mData.itemPrice+'</a>';
 		document.getElementById("name").innerHTML = '<a href="javascript:void(0)">'+mData.itemName+'</a>';
-		document.getElementById("chatB").value = "Discussion(" + mData.comments + ")";
+		document.getElementById("chatB").innerHTML = "Discussion(" + mData.comments + ")";
 		document.getElementById("name").title = mData.teaser;
 		
 		//Play audio tone
@@ -67,18 +67,26 @@
 	<div id="icon" class="lItem"><img src="img/favicon.png" onclick="openWoot();"/></div>
 	<div id="selector" class="lItem">
 		<select id="dropdown" onchange="updateWootSelection(this.options[this.selectedIndex].value);">
-			<option value="0">Woot!</option>
+			<option value="0">Woot.Woot!</option>
 			<option value="1">Shirt.Woot!</option>
 			<option value="2">Kids.Woot!</option>
 			<option value="3">Wine.Woot!</option>
 		</select>
 	</div>
+	<div class="lItem divider"></div>
 	<div id="soldOut" class="lItem" onclick="openWoot();">Sold Out!</div>
 	<div id="price" class="lItem" onclick="openWoot();">Loading...</div>
+	<div class="lItem divider"></div>
 	<div id="name" class="lItem" onclick="openWoot();"></div>
-	<!-- Right Buttons -->	
+	<!-- Right Buttons -->
+	<div id="chat" class="rItem"><a id="chatB" class="buttonClass" href="javascript:linkChat();">Discussion</a></div>
+	<div class="rItem divider"></div>
+	<div id="buy" class="rItem"><a id="buyB" class="buttonClass" href="javascript:linkBuy();">I want one!</a></div>
+	
+	<!--
 	<div id="chat" class="rItem"><input id="chatB" type="button" value="Discussion" onclick="linkChat();"></div>
 	<div id="buy" class="rItem"><input id="buyB" type="button" value="I want one!" onclick="linkBuy();"></div>
+	-->
 </div>
 </body>
 </html>
